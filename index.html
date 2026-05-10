@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title> Maxboyrblx| Maxboy a Very Good Friend</title>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif;}
+body{background:#050507;color:white;overflow-x:hidden;}
+
+/* ANIMATED BACKGROUND */
+.bg {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(270deg,#00f0ff,#000,#8a2be2,#000);
+  background-size: 800% 800%;
+  animation: gradientMove 12s ease infinite;
+  z-index:-2;
+}
+@keyframes gradientMove {
+  0%{background-position:0% 50%;}
+  50%{background-position:100% 50%;}
+  100%{background-position:0% 50%;}
+}
+
+/* PARTICLES */
+#particles {
+  position: fixed;
+  width:100%;
+  height:100%;
+  z-index:-1;
+}
+
+/* NAVBAR */
+nav {
+  display:flex;
+  justify-content:space-between;
+  padding:20px 40px;
+  background:rgba(0,0,0,0.6);
+  backdrop-filter:blur(10px);
+}
+nav h1{color:#00f0ff;}
+nav a{color:white;margin-left:20px;text-decoration:none;}
+
+/* HERO */
+.hero {
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  flex-direction:column;
+  text-align:center;
+}
+
+.glitch {
+  font-size:80px;
+  color:#00f0ff;
+  animation:glitch 1s infinite;
+}
+@keyframes glitch {
+  0%{text-shadow:2px 2px #ff00ff;}
+  25%{text-shadow:-3px -3px #00ffff;}
+  50%{text-shadow:3px -3px #ff00ff;}
+  75%{text-shadow:-3px 3px #00ffff;}
+  100%{text-shadow:2px 2px #ff00ff;}
+}
+
+.hero p {color:#ccc;}
+
+.btn {
+  margin-top:20px;
+  padding:12px 30px;
+  border:none;
+  border-radius:30px;
+  background:linear-gradient(45deg,#00f0ff,#8a2be2);
+  color:white;
+  cursor:pointer;
+  box-shadow:0 0 20px #00f0ff;
+}
+.btn:hover{transform:scale(1.1);}
+
+/* SECTION */
+.section{padding:80px 20px;text-align:center;}
+.section h2{color:#00f0ff;margin-bottom:20px;}
+
+/* STATS */
+.stats{display:flex;justify-content:center;gap:30px;flex-wrap:wrap;}
+.stat{font-size:20px;}
+.stat span{display:block;font-size:40px;color:#00f0ff;}
+
+/* ROSTER */
+.roster{display:flex;justify-content:center;flex-wrap:wrap;gap:20px;}
+.card{
+  background:#111;
+  padding:20px;
+  width:220px;
+  border-radius:15px;
+  box-shadow:0 0 15px #00f0ff;
+  transition:0.4s;
+}
+.card:hover{
+  transform:translateY(-15px) scale(1.05);
+  box-shadow:0 0 25px #00f0ff;
+}
+
+/* MATCHES */
+.matches{display:flex;flex-direction:column;gap:15px;align-items:center;}
+.match{
+  background:#111;
+  padding:15px 25px;
+  border-radius:10px;
+  width:300px;
+  box-shadow:0 0 10px #00f0ff;
+}
+
+/* FOOTER */
+footer{text-align:center;padding:20px;background:black;color:#777;}
+</style>
+</head>
+
+<body>
+
+<div class="bg"></div>
+<canvas id="particles"></canvas>
+
+<!-- NAV -->
+<nav>
+  <h1>CHAIR</h1>
+  <div>
+     
+    <a href="#">Home</a>
+    <a href="#">Roster</a>
+    <a href="#">Matches</a>
+    <a href="#">Join</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+    <h1 class="glitch">MAXBOY</h1>
+  <p>Maxboyrblx</p>
+  <p>“Friend For Right | Maxboy A Good Friend”</p>
+  </div>
+
+<!-- STATS -->
+<div class="section">
+  <h2>Our Achievements</h2>
+  <div class="stats">
+    <div class="stat"><span>40+</span>Wins</div>
+    <div class="stat"><span>20</span>Tournaments</div>
+    <div class="stat"><span>100+</span>Members</div>
+  </div>
+</div>
+
+<!-- ROSTER -->
+<div class="section">
+  <h2>Elite Squad</h2>
+  <div class="roster">
+    <div class="card"><h3>Leader</h3><p>Founder</p></div>
+    <div class="card"><h3>Sniper</h3><p>Sharp Shooter</p></div>
+    <div class="card"><h3>Rusher</h3><p>Aggressive Play</p></div>
+    <div class="card"><h3>Support</h3><p>Strategist</p></div>
+  </div>
+</div>
+
+<!-- MATCHES -->
+<div class="section">
+  <h2>Recent Matches</h2>
+  <div class="matches">
+    <div class="match">Maxboy vs Team Alpha — WIN 🏆</div>
+    <div class="match">Maxboy vs Team Omega — LOSS ❌</div>
+    <div class="match">Maxboy vs Team Nova — WIN 🔥</div>
+  </div>
+</div>
+
+<!-- JOIN -->
+<div class="section">
+  <h2>Join Chair</h2>
+   <a class="btn" href="https://discord.gg/eWhtEwCvs" target="_blank">Join Now</a>
+</div>
+
+<footer>
+  © 2026 Maxboyrblx
+</footer>
+
+<!-- PARTICLES SCRIPT -->
+<script>
+const canvas = document.getElementById("particles");
+const ctx = canvas.getContext("2d");
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+let particles = [];
+let mouse = {x:null,y:null};
+
+window.addEventListener("mousemove",e=>{
+  mouse.x=e.x;
+  mouse.y=e.y;
+});
+
+class Particle{
+  constructor(){
+    this.x=Math.random()*canvas.width;
+    this.y=Math.random()*canvas.height;
+    this.size=Math.random()*3+1;
+    this.speedX=Math.random()*2-1;
+    this.speedY=Math.random()*2-1;
+  }
+  update(){
+    this.x+=this.speedX;
+    this.y+=this.speedY;
+
+    let dx=this.x-mouse.x;
+    let dy=this.y-mouse.y;
+    let dist=Math.sqrt(dx*dx+dy*dy);
+
+    if(dist<109){
+      this.x+=dx/10;
+      this.y+=dy/10;
+    }
+
+    if(this.x<0||this.x>canvas.width) this.speedX*=-1;
+    if(this.y<0||this.y>canvas.height) this.speedY*=-1;
+  }
+  draw(){
+    ctx.fillStyle="#00f0ff";
+    ctx.beginPath();
+    ctx.arc(this.x,this.y,this.size,0,Math.PI*2);
+    ctx.fill();
+  }
+}
+
+function init(){
+  for(let i=0;i<150;i++){
+    particles.push(new Particle());
+  }
+}
+
+function animate(){
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  particles.forEach(p=>{
+    p.update();
+    p.draw();
+  });
+  requestAnimationFrame(animate);
+}
+
+init();
+animate();
+
+window.addEventListener("resize",()=>{
+  canvas.width=window.innerWidth;
+  canvas.height=window.innerHeight;
+});
+</script>
+
+</body>
+  </html>
